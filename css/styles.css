@@ -140,3 +140,73 @@ section {
 }
 
 /* Implement your styling here */
+/* ========== Movie Card Styles ========== */
+
+#movieCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.card {
+  width: 200px;
+  height: 380px; /* fixed height to keep all cards equal */
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.2); /* border added */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+  background-color: #f8f8f8;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardPosterDiv {
+  width: 100%;
+  height: 300px;      /* fixed height */
+  overflow: hidden;   /* hides overflow if image is large */
+}
+
+.moviePoster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+@media screen and (max-width: 900px) {
+  #movieCards {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #movieCards {
+    grid-template-columns: 1fr; /* 1 column on small screens */
+  }
+
+  .card {
+    width: 90%;
+  }
+}

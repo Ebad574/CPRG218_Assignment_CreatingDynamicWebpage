@@ -9,7 +9,7 @@
  * 7.) There are 3 task in this that you have to complete. Discuss with your instructor to understand the task.
  */
 
-const myApiKey = ""; // <<-- ADD YOUR API KEY HERE. DELETE THIS KEY before uploading your code on Github or Brightspace, 
+const myApiKey = "2e36bf2e"; // <<-- ADD YOUR API KEY HERE. DELETE THIS KEY before uploading your code on Github or Brightspace, 
 
 const BASE_URL = "http://www.omdbapi.com";
 
@@ -125,7 +125,13 @@ async function getMovies(movieTitle) {
              * Else write a for loop which will iterator over filteredMovies array 
              * and call createMovieCard() for each movie object in this array.
              */
-
+         if (filteredMovies.length === 0) {
+                createEmptyView();
+            } else {
+                filteredMovies.forEach(movie => {
+                    createMovieCard(movie);
+                });
+            }
         }
     } catch(exception) {
         console.error("Exception occurred in getMovies function.")
@@ -169,7 +175,10 @@ function createEmptyView() {
      * TASK : 2
      * Create empty view and append it to "movieCards" section.
      */
-
+    const emptyMessage = document.createElement("p");
+    emptyMessage.classList.add("noresult");
+    emptyMessage.textContent = "No movie found!!! Please search for another title.";
+    document.getElementById("movieCards").appendChild(emptyMessage);
 }
 
 /**
@@ -191,5 +200,24 @@ function createMovieCard(movie) {
      * TASK : 3
      * Create Movie Card and append it "movieCards" section.
      */
+    const card = document.createElement("article");
+    card.classList.add("card");
 
+    const title = document.createElement("p");
+    title.classList.add("cardTitle");
+    title.textContent = movie.Title;
+
+    const posterDiv = document.createElement("div");
+    posterDiv.classList.add("cardPosterDiv");
+
+    const poster = document.createElement("img");
+    poster.classList.add("moviePoster");
+    poster.src = movie.Poster;
+    poster.alt = "Movie poster";
+
+    posterDiv.appendChild(poster);
+    card.appendChild(title);
+    card.appendChild(posterDiv);
+
+    document.getElementById("movieCards").appendChild(card);
 }
